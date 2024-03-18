@@ -1,0 +1,27 @@
+<div class="login-container">
+    <img class="img" src="/assets/images/Home-icon.png" alt="not found !">
+    <div class="logo">Abcd EFgh IJKL</div>
+    <div class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum unde facere omnis voluptates
+        inventore magni voluptatibus optio laboriosam. Perspiciatis veritatis consequatur, blanditiis illum odit modi
+        possimus sapiente sunt dicta voluptas reprehend modi?</div>
+
+    <div class="login-form">
+        <div class="form-group">
+            <label for="uname">Username : </label>
+            <input type="text" id="uname" name="uname" class="form-control" [(ngModel)]="username" />
+        </div>
+        <div class="form-group">
+            <label for="pwd">password : </label>
+            <input type="password" id="pwd" name="pwd" class="form-control" [(ngModel)]="password" />
+        </div>
+
+        <div class="btn-container">
+            <div class="error">{{errorMsg}}</div>
+            <div class="btn btn-dark" (click)="login()">Login</div>
+        </div>
+        <!-- 
+        <p>User name : {{username}}</p>
+        <p>User password : {{password}}</p> -->
+
+    </div>
+</div>
