@@ -1,0 +1,126 @@
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <h2>Registration Form</h2>
+        <!-- {{registrationForm.value | json}} -->
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Username : </label>
+                <input formControlName="username" type="text" name="username" id="username" class="form-control"
+                    [class.is-invalid]="getRegistrationFormControl.username.invalid && getRegistrationFormControl.username.touched">
+
+                <div
+                    *ngIf="getRegistrationFormControl.username.invalid && (getRegistrationFormControl.username.dirty ||getRegistrationFormControl.username.touched)">
+                    <small *ngIf="getRegistrationFormControl.username?.errors?.required" class="text-danger">Username
+                        is
+                        required</small>
+                    <small *ngIf="getRegistrationFormControl.username.errors.minlength" class="text-danger">Username
+                        must have at least 3 characters</small>
+
+                    <small *ngIf="getRegistrationFormControl.username.errors.forbiddenName" class="text-danger">Username
+                        {{getRegistrationFormControl.username.errors.forbiddenName.value}} is not allowed !</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password : </label>
+                <input type="password" formControlName="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password : </label>
+                <input [class.is-invalid]="registrationForm.errors?.misMatch" type="password"
+                    formControlName="confirmPassword" name="confirmPassword" id="confirmPassword" class="form-control">
+                <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords does not match !</small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email : </label>
+                <button class="btn btn-secondary btn-sm m-2" (click)="addAlternateEmail()">Add email</button>
+                <input formControlName="email"
+                    [class.is-invalid]="getRegistrationFormControl.email.invalid && getRegistrationFormControl.email.touched"
+                    type="text" name="email" id="email" class="form-control">
+
+                <small
+                    [class.d-none]="getRegistrationFormControl.email.valid || getRegistrationFormControl.email.untouched"
+                    class="text-danger">Email is required !</small>
+
+                <div formArrayName="alternateEmails" *ngFor="let email of alternateEmails.controls; let i=index">
+                    <input type="text" class="form-control my-1" [formControlName]="i">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input formControlName="subscribe" type="checkbox" name="fullname" id="fullname"
+                    class="form-check-input">
+                <label class="form-check-label">Send me promotional offers . </label>
+            </div>
+
+
+            <div class="form-group">
+                <label for="fullname">Full Name : </label>
+                <input formControlName="fullname" type="text" name="fullname" id="fullname" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">Birth date : </label>
+                <input formControlName="birthdate" type="date" name="birthdate" id="birthdate" class="form-control">
+            </div>
+
+            <div formGroupName="address">
+                <div class="form-group">
+                    <label for="">City</label>
+                    <input formControlName="city" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">State</label>
+                    <input formControlName="state" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Postalcode </label>
+                    <input formControlName="postalCode" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                Select Your Gender :
+                <div class="form-check">
+                    <input formControlName="gender" value="male" class="form-check-input" type="radio"
+                        id="flexRadioDefault1" checked name="gender">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input formControlName="gender" value="female" class="form-check-input" type="radio"
+                        id="flexRadioDefault2" name="gender">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Female
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group dropdown m-20">
+                <label for="category">Category: </label>
+                <select formControlName="category" id="category" class="dropdown m-20">
+                    <option value="">Select category</option>
+                    <option value="general">General</option>
+                    <option value="obc/ews">OBC/EWS</option>
+                    <option value="sc/st">SC/ST</option>
+                    <option value="other">other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <div class="">
+                    <img [src]="url" height="200"> <br/>
+                    <label for="" class="input-label">Profile pic : </label>
+                    <input class="input-profile-pic" type="file" src="" alt="" (change)="onSelectProfilePic($event)">
+                </div>
+            </div>
+
+            <input [disabled]="!registrationForm.valid" class="btn btn-primary mt-5" type="submit" value="Register">
+            <div (click)="loadApiData()" type="button" class="btn btn-secondary mt-5 ml-10">Load API Data</div>
+            <input type="reset" class="btn btn-secondary mt-5 ml-10" value="Clear form">
+        </form>
+
+    </div>
+</div>

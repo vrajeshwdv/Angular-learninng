@@ -1,0 +1,44 @@
+.wrapper {
+    background: linear-gradient(135deg, #ffe645 0%, #e2aa02 100%);
+    padding: 20px;
+
+    .container-fluid {
+        background-color: white;
+        margin: auto;
+        padding: 80px;
+        height: auto;
+        width: 1000px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 30px;
+
+        .form-group {
+            font-size: 20px;
+            font-weight: 600;
+
+            .form-control {
+                margin: 8px;
+            }
+        }
+
+        .btn-secondary {
+            margin-left: 10px;
+        }
+
+        .dropdown {
+            select {
+                padding: 5px;
+                margin: 5px;
+            }
+
+            margin-top: 10px;
+
+        }
+
+        input[type="file"]{
+            height: 80px;
+
+        }
+    }
+
+
+}
